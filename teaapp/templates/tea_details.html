@@ -8,10 +8,8 @@
     <h3>Types of Packaging:</h3>
     <h4><ul>
         {% for packaging in packagings %}
-            <li>{{ packaging.name }} - {{ tea_packagings.longevity_in_months }} month longevity</li>
+            <li>{{ packaging.name }} - {{ packaging.longevity_in_months }} month longevity</li>
         {% endfor %}
-                
-    </ul></h4>
-        
+        </ul></h4>
 
 {% endblock content %}
