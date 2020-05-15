@@ -7,13 +7,22 @@
     <h3>Flavor: {{ tea.flavor }}</h3>
     <h3>Types of Packaging:</h3>
     <h4><ul>
-        {% if packaging.name is not none%}
-            {% for packaging in packagings %}
-                <li>{{ packaging.name }} - {{ packaging.longevity_in_months }} month longevity</li>
-            {% endfor %}
-        {% else %}
-            <li>No packagings listed</li>
-        {% endif %}
+        {% for packaging in packagings %}
+            {% if packaging.name is not None %}
+                <li>
+                    <div class='details-list'>
+                        {{ packaging.name }} - {{ packaging.longevity_in_months }} month longevity
+                        <form action="{% url 'teaapp:tea' packaging.id %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="actual_method" value="DELETE">
+                        <button>Delete</button>
+                    </div>
+                </li>
+                </form>
+            {% else %}
+                <li>No packagings listed</li>
+            {% endif %}
+        {% endfor %}
     </ul></h4>
 
 {% endblock content %}

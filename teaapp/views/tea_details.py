@@ -33,6 +33,24 @@ def tea_details(request, tea_id):
 
         return render(request, template, context)
 
+    elif request.method == 'POST':
+        form_data = request.POST
+        # print(form_data)
+
+        if (
+        "actual_method" in form_data
+        and form_data["actual_method"] == "DELETE"
+        ):
+            with sqlite3.connect(Connection.db_path) as conn:
+                db_cursor = conn.cursor()
+
+                db_cursor.execute("""
+                DELETE FROM teaapp_teapackaging
+                WHERE id = ?
+                """, (tea_id,))
+
+            return redirect(reverse('teaapp:tea_list'))
+
 def create_tea(cursor, row):
     _row = sqlite3.Row(cursor, row)
 
@@ -60,7 +78,7 @@ def get_packagings(tea_id):
         FROM teaapp_tea t
         LEFT JOIN teaapp_teapackaging tp ON t.id = tp.tea_id
         LEFT JOIN teaapp_packaging p ON p.id = tp.packaging_id
-        WHERE tp.tea_id = ?
+        WHERE t.id = ?
         """, (tea_id,))
 
         packagings = db_cursor.fetchall()

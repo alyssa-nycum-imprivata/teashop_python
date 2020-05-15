@@ -1,0 +1,6 @@
+.details-list {
+    display: flex;
+    flex-direction: row;
+    color: red;
+}
+
