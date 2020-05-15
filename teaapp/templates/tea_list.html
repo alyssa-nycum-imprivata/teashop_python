@@ -10,7 +10,7 @@
     <ol>
         {% for tea in all_teas %}
             <li>
-                {{ tea.name }}
+                <a href="{% url 'teaapp:tea' tea.id %}"> {{ tea.name }} </a>
             </li>
         {% endfor %}
     </ol>

@@ -9,4 +9,5 @@ urlpatterns = [
     path('', tea_list, name='tea_list'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('tea/form', tea_form, name='tea_form'),
+    path('teas/<int:tea_id>/', tea_details, name='tea'),
 ]
