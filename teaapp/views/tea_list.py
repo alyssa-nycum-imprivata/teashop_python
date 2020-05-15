@@ -1,6 +1,6 @@
 import sqlite3
 from .connection import Connection
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from teaapp.models import Tea
 
 def tea_list(request):
@@ -31,3 +31,20 @@ def tea_list(request):
         }
 
         return render(request, template, context)
+    
+    elif request.method == 'POST':
+        form_data = request.POST
+
+        with sqlite3.connect(Connection.db_path) as conn:
+            db_cursor = conn.cursor()
+
+            db_cursor.execute("""
+            INSERT INTO teaapp_tea
+            (
+                name, flavor
+            )
+            VALUES (?, ?)
+            """,
+            (form_data['name'], form_data['flavor']))
+
+        return redirect(reverse('teaapp:tea_list'))

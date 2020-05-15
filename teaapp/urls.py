@@ -8,4 +8,5 @@ app_name = "teaapp"
 urlpatterns = [
     path('', tea_list, name='tea_list'),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('tea/form', tea_form, name='tea_form'),
 ]

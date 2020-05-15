@@ -1,0 +1,25 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+    <h1>Welcome to the Tea Shop</h1>
+
+    <h2>Add a Tea:<h2>
+
+    <form action="{% url 'teaapp:tea_list' %}" method="post">
+        {% csrf_token %}
+
+        <fieldset>
+            <label for="name">Name: </label>
+            <input id="name" type="text" name="name">
+        </fieldset>
+
+        <fieldset>
+            <label for="flavor">Flavor: </label>
+            <input id="flavor" type="text" name="flavor">
+        </fieldset>
+
+        <input type="submit" value="Add Tea" />
+
+    </form>
+
+{% endblock content %}
