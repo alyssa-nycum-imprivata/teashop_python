@@ -1,0 +1,16 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+    <h1>Welcome to the Tea Shop</h1>
+
+    <h2>Available Teas:<h2>
+
+    <ol>
+        {% for tea in all_teas %}
+            <li>
+                {{ tea.name }}
+            </li>
+        {% endfor %}
+    </ol>
+
+{% endblock content %}
