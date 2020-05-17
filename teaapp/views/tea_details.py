@@ -35,7 +35,7 @@ def tea_details(request, tea_id):
 
     elif request.method == 'POST':
         form_data = request.POST
-        # print(form_data)
+        print(form_data)
 
         if (
         "actual_method" in form_data
@@ -46,7 +46,7 @@ def tea_details(request, tea_id):
 
                 db_cursor.execute("""
                 DELETE FROM teaapp_teapackaging
-                WHERE id = ?
+                WHERE tea_id = ?
                 """, (tea_id,))
 
             return redirect(reverse('teaapp:tea_list'))

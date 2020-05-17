@@ -1,3 +1,4 @@
+  
 {% extends 'shared/base.html' %}
 
 {% block content %}
@@ -10,15 +11,13 @@
         {% for packaging in packagings %}
             {% if packaging.name is not None %}
                 <li>
-                    <div class='details-list'>
-                        {{ packaging.name }} - {{ packaging.longevity_in_months }} month longevity
-                        <form action="{% url 'teaapp:tea' packaging.id %}" method="POST">
+                    {{ packaging.name }} - {{ packaging.longevity_in_months }} month longevity
+                    <form action="{% url 'teaapp:tea' packaging.id %}" method="POST">
                         {% csrf_token %}
                         <input type="hidden" name="actual_method" value="DELETE">
                         <button>Delete</button>
-                    </div>
+                    </form>
                 </li>
-                </form>
             {% else %}
                 <li>No packagings listed</li>
             {% endif %}
