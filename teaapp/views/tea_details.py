@@ -46,7 +46,7 @@ def tea_details(request, tea_id):
 
                 db_cursor.execute("""
                 DELETE FROM teaapp_teapackaging
-                WHERE tea_id = ?
+                WHERE id = ?
                 """, (tea_id,))
 
             return redirect(reverse('teaapp:tea_list'))
@@ -71,7 +71,7 @@ def get_packagings(tea_id):
             t.id,
             p.id,
             p.name,
-            tp.id,
+            tp.id AS tea_packaging_id,
             tp.tea_id,
             tp.packaging_id,
             tp.longevity_in_months

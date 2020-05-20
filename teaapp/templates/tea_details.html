@@ -12,7 +12,7 @@
             {% if packaging.name is not None %}
                 <li>
                     {{ packaging.name }} - {{ packaging.longevity_in_months }} month longevity
-                    <form action="{% url 'teaapp:tea' packaging.id %}" method="POST">
+                    <form action="{% url 'teaapp:tea' packaging.tea_packaging_id %}" method="POST">
                         {% csrf_token %}
                         <input type="hidden" name="actual_method" value="DELETE">
                         <button>Delete</button>
